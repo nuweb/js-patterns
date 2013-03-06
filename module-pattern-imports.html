@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js"></script>
+</head>
+<body>
+<div id="container">This is container text.</div>
+<script>
+var myModule = (function(myUnderscore, myJquery){	// alias the imports
+	function privateMethod(){
+		console.log("privateMethod called");
+		console.log(myJquery);
+		console.log(myUnderscore);
+		myJquery('#container').html('This is changed container text');
+	}
+	return {
+		publicMethod: function(){
+			privateMethod();
+		}
+	}
+//	Pull jQuery and Underscore
+})(_, jQuery);
+
+myModule.publicMethod();
+</script>
+</body>
+</html>

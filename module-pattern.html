@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<script>
+
+//	Private and privileged members can only be made when an object is constructed. 
+//	Privileged methods are assigned with 'this' within the constructor.
+var modulePattern = (function(){
+	var myPrivateVar, myPrivateMethod;
+	myPrivateVar = 0;
+	myPrivateMethod = function(){
+		console.log("My Private Method called!");
+	}
+	return {
+		myPublicVar: "foo",
+		//	A previleged method utilizing privates
+		myPrevilegedMethod: function(){
+			// Has access to private variables
+			console.log("My Previleged Method logging private variable: " + myPrivateVar);
+		}
+	};
+})();
+
+// Public members can be added at any time.
+modulePattern.prototype.myPublicMethod = function(){
+	// cannot access the constructor's private variables
+	console.log("My Public Method. Doesn't have access to private varialbles");
+}
+
+//	The methods are effectively namespaced inside the modulePattern Object
+
+</script>
+</body>
+</html>

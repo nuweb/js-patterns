@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<script>
+
+// 	Three ways to create a new empty object:
+var myObject = {};
+var myObject = new Object;
+var myObject = Object.create(null);
+
+// 	Four ways to set properties on an object
+
+//	1. 	Dot syntax
+myObject.key = "Property is set using the dot syntax";
+console.log(myObject.key);
+
+//	2. 	Square bracket syntax
+myObject["key"]	= "Property is set using the square bracket syntx";
+console.log(myObject["key"]);
+
+//	ECMAScript 5 only compatible approaches
+
+//	3. 	Object.defineProperty 
+//		Object.defineProperty(obj, prop, descriptor)
+Object.defineProperty(myObject, "key", {
+	//	value associated with the property
+	value: "Property is set using Object.defineProperty",
+	//	True if and only if the value associated with the property 
+	//	may be changed with an assignment operator. 
+	writable: true,	//	Defaults to false.
+	//	True if and only if the type of this property descriptor may be changed and 
+	//	if the property may be deleted from the corresponding object. 
+	configurable: false,	//	Defaults to false.
+	enumerable: true
+});
+console.log(myObject.key);
+
+//	4. 	Object.defineProperties
+Object.defineProperties(myObject, {
+	"key1" : {
+		value : "Key1 Property is set using the Object.defineProperties"
+	},
+	"key2" : {
+		value : "Key2 Property is set using the Object.defineProperties"
+	}
+});
+console.log(myObject["key1"]);
+console.log(myObject["key2"]);
+
+</script>
+</body>
+</html>

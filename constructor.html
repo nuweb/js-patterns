@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<script>
+	// 	JavaScript Inheritance	
+	//	Constructor: Car
+	function Car(obj) {
+		this.name = obj.name || '';
+		this.color = obj.color || 'white';
+		this.tyres = obj.tyres || 4;
+		this.fuel = obj.fuel || "100%";
+		this.doors = obj.doors || 4;
+		this.cylinders = obj.cylinders || 4;
+	}
+	Car.prototype.getName = function(){
+		console.log(this.name);
+	}
+	
+	//	Inherits from Car
+	Mercedes.prototype = new Car({cylinders: 6});
+	function Mercedes(bluetooth){
+		this.name = 'Mercedes';
+		this.doors = 2;
+		this.bluetooth = this.bluetooth || true;
+	}
+	//	Object instance
+	var myCar = new Mercedes;
+
+	console.log(myCar.name);	//	Outputs Mercedes
+	console.log(myCar.color);	//	Outputs white
+	console.log(myCar.tyres);	//	Outputs 4
+	console.log(myCar.fuel);
+	console.log(myCar.bluetooth);
+	console.log(myCar.doors);		// 	Takes Sub-Class property
+	delete myCar.doors;
+	console.log(myCar.doors);		//	Takes prototype property, defined at the parent Class
+	console.log("myCar.cylinders: " + myCar.cylinders);
+	console.log(Mercedes.prototype.cylinders);
+	delete Mercedes.prototype.cylinders; 	//	Delete the property on on the SubClass prototype
+	console.log(myCar.cylinders);			//	The property is unavailable on the sub-class instance
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<script>
+//	The Singleton pattern is thus known because it restricts instantiation of a class to a single object
+//	The Singleton pattern can be implemented by creating a class with a method that creates 
+//	a new instance of the class if one doesn't exist. 
+//	In the event of an instance already existing, it simply returns a reference to that object.
+// 	Usage:
+// 		It is important to note the difference between a static instance of a class (object) and a Singleton: 
+//		whilst a Singleton can be implemented as a static instance, it can also be constructed lazily, 
+//		without the need for resources nor memory until this is actually needed.
+
+//	This is a Singleton pattern with deferred instantiation
+var mySingleton = (function(){
+	var instance;
+	//	constructor that houses all singleton properties & methods
+	function initialize(){
+		//	private properties & methods
+		var myPrivateProp = "This is private variable!";
+		function myPrivateMethod(){
+			console.log("This is private method.");
+		}
+		//	public properties & methods
+		return {
+			publicProperty: "This is public property!",
+			publicMethod: function(){
+				console.log("This is public method.");
+			}
+		}
+	}
+	return {
+		//	Static method
+		getInstance: function(){
+			if(!instance) {
+				instance = initialize();
+			}
+			return instance;
+		}
+	}
+})();
+
+var singletonA = mySingleton;
+var singletonB = mySingleton;
+console.log(singletonA === singletonB);
+
+</script>
+</body>
+</html>
